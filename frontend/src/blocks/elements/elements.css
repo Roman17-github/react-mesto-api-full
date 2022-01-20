@@ -1,0 +1,14 @@
+.elements {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(282px, 282px));
+    margin: 0 auto;
+    gap:17px;
+    justify-content: center;
+}
+@media screen and (max-width:767px) {
+    .elements {
+        max-width: 100%;
+        gap: 20px;
+    }
+}

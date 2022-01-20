@@ -1,0 +1,11 @@
+.input {
+    background-color: inherit;
+    border: 0;
+    border-bottom: 2px solid #CCCCCC;;
+    height:27px;
+    color: white;
+}
+
+.input:nth-of-type(2){
+    margin-top: 30px;
+}

@@ -1,0 +1,15 @@
+.header {
+    max-width: 880px;
+    margin: 0 auto 40px;
+    border-bottom: 1px solid rgba(84,84,84,0.7);
+    padding-bottom: 41px;
+    display: flex;
+    justify-content: space-between;
+}
+@media screen and (max-width:767px) {
+    .header {
+        max-width: 100%;
+        margin: 28px auto 42px;
+        padding-left: 27px;
+    }
+}
