@@ -81,7 +81,7 @@
   }
 
    const api = new Api({
-    url: "https://nomoreparties.co/v1/cohort-26",
+    url: "api.roma134.students.nomoredomains.work",
     headers: {
       authorization: "aaca6239-cac0-4a87-8d95-e01e56ac6f60",
       "Content-Type": "application/json",

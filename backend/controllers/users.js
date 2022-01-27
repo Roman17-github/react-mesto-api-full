@@ -119,7 +119,7 @@ const login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id },  NODE_ENV === 'production' ? JWT_SECRET : 'super-strong-secret', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'super-strong-secret', { expiresIn: '7d' });
       res.cookie('jwt', token, {
         maxAge: 3600000,
         httpOnly: true
@@ -136,4 +136,18 @@ const login = (req, res, next) => {
 
 }
 
-module.exports = { getUsers, getUser, createUser, upDateUser, upDateAvatar, login };
+const getMyUser = (req, res, next) => {
+  return User.findById(req.user._id)
+    .orFail(() => {
+      const error = new Error("Пользователь не найден");
+      error.name = "UserNotFoundError";
+      error.statusCode = 404;
+      throw error;
+    })
+    .then((I) => {
+      res.status(200).send(I)
+    })
+    .catch(next)
+}
+
+module.exports = { getUsers, getUser, createUser, upDateUser, upDateAvatar, login, getMyUser };

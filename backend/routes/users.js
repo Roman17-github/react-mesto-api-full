@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getUsers, getUser, upDateUser, upDateAvatar } = require('../controllers/users');
+const { getUsers, getUser, upDateUser, upDateAvatar, getMyUser } = require('../controllers/users');
 const { celebrate, Joi } = require('celebrate');
 const validator = require('validator');
 
@@ -11,11 +11,13 @@ const validateURL = (value) => {
 };
 
 router.get('/', getUsers);
+router.get('/me', getMyUser);
 router.get('/:userId', celebrate({
   params: Joi.object().keys({
     userId: Joi.string().alphanum().length(24),
   })
 }), getUser);
+
 router.patch('/me', celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
