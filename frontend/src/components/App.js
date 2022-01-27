@@ -31,7 +31,7 @@ function App() {
   const [isSucces, setSucces] = React.useState();
   const [email, setEmail] = React.useState("");
   const history = useHistory();
-
+  
   React.useEffect(() => {
     api
       .getUserInfo()

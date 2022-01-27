@@ -3,7 +3,7 @@ const AuthError = require('../errors/AuthError');
 
 
 module.exports = (req, res, next) => {
-  const { NODE_ENV, JWT_SECRET } = process.env;
+  const { NODE_ENV, JWT_SECRET } = process.env;cd
   const { jwt } = req.cookies;
   if (!jwt) {
     throw new AuthError('Необходима авторизация');

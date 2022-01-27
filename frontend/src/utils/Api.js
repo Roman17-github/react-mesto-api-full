@@ -14,6 +14,7 @@
   
     getUserInfo() {
       return fetch(`${this._url}/users/me`, {
+        credentials: 'include',
         method: "GET",
         headers: this._headers,
       }).then(this._checkResponse);
@@ -81,9 +82,9 @@
   }
 
    const api = new Api({
-    url: "api.roma134.students.nomoredomains.work",
+    url: "http://api.roma134.students.nomoredomains.work",
+    credentials: 'include',
     headers: {
-      authorization: "aaca6239-cac0-4a87-8d95-e01e56ac6f60",
       "Content-Type": "application/json",
     },
   });

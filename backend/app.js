@@ -1,4 +1,5 @@
 require('dotenv').config();
+const cors = require('cors');
 const express = require("express");
 const app = express();
 const { PORT = 3000 } = process.env;
@@ -10,6 +11,7 @@ const { login, createUser } = require('./controllers/users');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 mongoose.connect("mongodb://localhost:27017/mestodb", {
