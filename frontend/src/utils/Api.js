@@ -89,7 +89,7 @@
   }
 
    const api = new Api({
-    url: "http://api.roma134.students.nomoredomains.work",
+    url: "https://api.roma134.students.nomoredomains.work",
     credentials: 'include',
     headers: {
       "Content-Type": "application/json",
