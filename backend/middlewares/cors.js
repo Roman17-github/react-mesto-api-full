@@ -1,7 +1,7 @@
 
 const allowedCors = [
-    'https://api.roma134.students.nomoredomains.work',
-    'http://api.roma134.students.nomoredomains.work',
+    'https://roma.134.nomoredomains.rocks',
+    'http://roma.134.nomoredomains.rocks',
     'https://localhost:3001',
     'http://localhost:3001',
   ];
