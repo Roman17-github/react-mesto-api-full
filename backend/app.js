@@ -1,23 +1,24 @@
 require('dotenv').config();
-const cors = require('cors');
 const express = require("express");
 const app = express();
 const { PORT = 3000 } = process.env;
 const mongoose = require("mongoose");
 const auth = require('./middlewares/auth');
+const cors = require('./middlewares/cors');
 const { celebrate, Joi, errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const { login, createUser } = require('./controllers/users');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 app.use(express.json());
-app.use(cors());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 mongoose.connect("mongodb://localhost:27017/mestodb", {
   useNewUrlParser: true,
 });
 
+app.use(cors);
 app.use(requestLogger);
 
 app.get('/crash-test', () => {
@@ -59,7 +60,7 @@ app.use((err, req, res, next) => {
   const status = err.statusCode || 500;
   const { message } = err;
   res.status(status).send({ error: message || "Ошибка на сервере" })
-
+  console.log(err)
 })
 
 app.listen(PORT);

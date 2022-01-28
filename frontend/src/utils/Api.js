@@ -14,8 +14,8 @@
   
     getUserInfo() {
       return fetch(`${this._url}/users/me`, {
-        credentials: 'include',
         method: "GET",
+        credentials: 'include',
         headers: this._headers,
       }).then(this._checkResponse);
     }
@@ -23,6 +23,7 @@
     getCards() {
       return fetch(`${this._url}/cards`, {
         method: "GET",
+        credentials: 'include',
         headers: this._headers,
       }).then(this._checkResponse);
     }
@@ -30,6 +31,7 @@
     setUserInfo(input) {
       return fetch(`${this._url}/users/me`, {
         method: "PATCH",
+        credentials: 'include',
         headers: this._headers,
         body: JSON.stringify({
           name: input.name,
@@ -41,6 +43,7 @@
     addCard(input) {
       return fetch(`${this._url}/cards`, {
         method: "POST",
+        credentials: 'include',
         headers: this._headers,
         body: JSON.stringify({
           name: input.name,
@@ -52,6 +55,7 @@
     deleteCard(cardID) {
       return fetch(`${this._url}/cards/${cardID}`, {
         method: "DELETE",
+        credentials: 'include',
         headers: this._headers,
       }).then(this._checkResponse);
     }
@@ -59,6 +63,7 @@
     avatar(input) {
       return fetch(`${this._url}/users/me/avatar`, {
         method: "PATCH",
+        credentials: 'include',
         headers: this._headers,
         body: JSON.stringify({
           avatar: input.avatar,
@@ -68,13 +73,15 @@
 
     changeLikeCardStatus(cardID,isLiked) {
       if (isLiked) {
-        return fetch(`${this._url}/cards/likes/${cardID}`, {
+        return fetch(`${this._url}/cards/${cardID}/likes`, {
           method: "PUT",
+          credentials: 'include',
           headers: this._headers,
         }).then(this._checkResponse);
       } else {
-        return fetch(`${this._url}/cards/likes/${cardID}`, {
+        return fetch(`${this._url}/cards/${cardID}/likes`, {
           method: "DELETE",
+          credentials: 'include',
           headers: this._headers,
         }).then(this._checkResponse);
       }
@@ -82,7 +89,7 @@
   }
 
    const api = new Api({
-    url: "http://api.roma134.students.nomoredomains.work",
+    url: "http://localhost:3000",
     credentials: 'include',
     headers: {
       "Content-Type": "application/json",
