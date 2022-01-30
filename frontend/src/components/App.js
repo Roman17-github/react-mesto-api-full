@@ -31,6 +31,22 @@ function App() {
   const [isSucces, setSucces] = React.useState();
   const [email, setEmail] = React.useState("");
   const history = useHistory();
+
+  React.useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      auth
+        .checkToken(token)
+        .then((res) => {
+          setEmail(res.email);
+          setLoggedIn(true);
+          history.push("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [loggedIn, history]);
   
   React.useEffect(() => {
     api
@@ -129,21 +145,7 @@ function App() {
       });
   }, []);
 
-  React.useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      auth
-        .checkToken(token)
-        .then((res) => {
-          setEmail(res.email);
-          setLoggedIn(true);
-          history.push("/");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [loggedIn, history]);
+  
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === card.owner._id);

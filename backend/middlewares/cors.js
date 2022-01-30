@@ -1,10 +1,9 @@
-
 const allowedCors = [
-    'https://roma.134.nomoredomains.rocks',
-    'http://roma.134.nomoredomains.rocks',
-    'https://localhost:3001',
-    'http://localhost:3001',
-  ];
+  'https://roma.134.nomoredomains.rocks',
+  'http://roma.134.nomoredomains.rocks',
+  'https://localhost:3001',
+  'http://localhost:3001',
+];
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
 module.exports = (req, res, next) => {
@@ -20,8 +19,7 @@ module.exports = (req, res, next) => {
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
     res.header('Access-Control-Allow-Headers', requestHeaders);
-    return res.end();
   }
-
   next();
+  return res.end();
 };

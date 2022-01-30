@@ -1,38 +1,39 @@
 const mongoose = require('mongoose');
+const { isURL } = require('validator');
 
 const cardSchema = new mongoose.Schema({
   name: {
     type: String,
     minlength: 2,
     maxlength: 30,
-    required: true
+    required: true,
   },
 
   link: {
     type: String,
     required: true,
     validate: {
-      validator: (v) => /((https|http):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/ig.test(v),
-      message: "Введите ссылку"
-    }
+      validator: (v) => isURL(v),
+      message: 'Введите ссылку',
+    },
   },
 
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
-    required: true
+    required: true,
   },
 
   likes:
   {
     type: [mongoose.Schema.Types.ObjectId],
-    default: []
+    default: [],
   },
 
   createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model('card', cardSchema);
