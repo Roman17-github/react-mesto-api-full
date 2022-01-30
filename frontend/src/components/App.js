@@ -46,8 +46,8 @@ function App() {
           console.log(err);
         });
     }
-  }, [loggedIn, history]);
-  
+  }, [history, loggedIn]);
+
   React.useEffect(() => {
     api
       .getUserInfo()
@@ -145,7 +145,7 @@ function App() {
       });
   }, []);
 
-  
+
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === card.owner._id);
@@ -171,12 +171,12 @@ function App() {
   }
 
   function handleSubmitAuth(email, password) {
-    
+
     auth
       .authorize(email, password)
       .then((data) => {
-        if (data.token) {
-          localStorage.setItem("jwt", data.token);
+        if (data.jwt) {
+          localStorage.setItem("jwt", data.jwt);
           setLoggedIn(true);
           history.push("/");
         }
@@ -198,10 +198,16 @@ function App() {
       });
   }
 
+  function signOut() {
+    localStorage.removeItem('jwt');
+    setLoggedIn(false);
+    history.push('/sign-in');
+  }
+
   return (
     <div className="body">
       <CurrentUserContext.Provider value={currentUser}>
-        <Header loggedIn={loggedIn} email={email} />
+        <Header loggedIn={loggedIn} email={email} signOut={signOut} />
         <Switch>
           <ProtectedRoute
             exact

@@ -1,4 +1,4 @@
-export const BASE_URL = "https://api.roma134.students.nomoredomains.work";
+export const BASE_URL = "http://localhost:3000";
 
 const checkresponse = (res) => {
   if (res.ok) {

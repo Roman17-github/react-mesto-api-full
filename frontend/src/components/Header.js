@@ -1,11 +1,8 @@
 import logo from "../images/logo.svg";
 import { Link, Route } from "react-router-dom";
 
-function Header({ loggedIn,email }) {
+function Header({ loggedIn,email,signOut }) {
 
-  const removeToken = () => {
-    localStorage.removeItem('jwt');
-  }
   return (
     <header className="header">
       <img src={logo} alt="логотип" className="header__logo" />
@@ -14,7 +11,7 @@ function Header({ loggedIn,email }) {
         {loggedIn && (
           <Route exact path="/">
             <p className="header__email">{email}</p>
-            <Link to="/sign-in" className="header__login" onClick={removeToken}>
+            <Link to="/sign-in" className="header__login" onClick={signOut}>
               Выйти
             </Link>
           </Route>
